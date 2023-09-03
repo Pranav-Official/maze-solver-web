@@ -7,13 +7,18 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
+    colors: {
+      'primary': '#5AAEE5',
+      'secondary': '#ACDAF6',
+      "accent": "#3DB62F",
+      'background': '#DEF0FC',
+      'text': '#020C13',
+
     },
+    fontFamily: {
+      Sulphur_point: ["Sulphur Point"],
+      Poppins: ["Poppins"],
+     },
   },
   plugins: [],
 }
