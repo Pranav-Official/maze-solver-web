@@ -6,6 +6,7 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode : "class",
   theme: {
     colors: {
       'primary': '#5AAEE5',
@@ -13,6 +14,12 @@ const config: Config = {
       "accent": "#3DB62F",
       'background': '#DEF0FC',
       'text': '#020C13',
+      'dark-primary': '#5AAEE5',
+      'dark-secondary': '#010609',
+      "dark-accent": "#A1E599",
+      'dark-background': '#020C13',
+      'dark-text': '#DEF0FC',
+
 
     },
     fontFamily: {
