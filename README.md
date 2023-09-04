@@ -4,7 +4,7 @@ Welcome to the Maze Solver Web Application! This interactive web application is 
 
 ## Features
 
-- **Various Maze Solving Algorithms:** Explore maze-solving techniques like Breadth-First Search (BFS), Depth-First Search (DFS), Geedy search and A* Search.
+- **Various Maze Solving Algorithms:** Explore maze-solving techniques like Breadth-First Search (BFS), Depth-First Search (DFS), Greedy search and A* Search.
 
 - **Interactive Visualization:** Watch as the algorithms navigate through the maze step by step, visualizing their progress and decision-making process.
 
