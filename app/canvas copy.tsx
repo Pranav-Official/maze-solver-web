@@ -1,17 +1,11 @@
 import React from "react";
 import {useRef, useEffect, useState } from "react";
 import mazeGenerator from "./mazeGenerator";
-import array2matrix from "./array2matrix";
 
 const Canvas = (props:any) => {
   const canvasRef = useRef<HTMLCanvasElement | null >(null);
 
-  // const [maze1d, setMaze] = useState(mazeGenerator(10, 10));
-  // console.log("recived in canvas", maze1d)
-   
-  const maze = array2matrix(props.maze1d, props.maze_size);
-  console.log("recived in canvas", maze, "maze_size", props.maze_size)
- 
+  const [maze, setMaze] = useState(props.maze);
 
   useEffect(() => {
     if (!canvasRef) {
@@ -47,7 +41,6 @@ const Canvas = (props:any) => {
           }
         }
       }
-      console.log("drawing compleye")
 
       console.log(width, height);
    

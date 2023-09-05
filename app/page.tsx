@@ -3,11 +3,15 @@ import maze_logo from "../public/mazelogo.png"
 import maze_logo_dark from "../public/mazelogo-dark.png"
 import moon_icon from "../public/moon-icon.png"
 import sun_icon from "../public/sun-icon.png"
+import mazeGenerator from "./mazeGenerator";
+
+import draw from "./draw";
 
 import Canvas from "./canvas";
 
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import matrix2array from "./matrix2array";
 
 export default function Home() {
 
@@ -15,6 +19,29 @@ export default function Home() {
   const [theme, setTheme] = useState(localStorage.getItem('theme')||'light')
   const [themeIcon, setThemeIcon] = useState(moon_icon)
   const [logoTheme, setLogoTheme] = useState(maze_logo)
+  const [maze_size, setMazeSize] = useState(21)
+  const [maze1d, setMaze] = useState(mazeGenerator(maze_size, maze_size));
+  // const [mazeKey, setMazeKey] = useState(0)
+
+  console.log("flattend maze",maze1d);
+
+  const maze2 = [
+    [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1],
+    [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
+    [1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1],
+    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1]
+  ];
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -41,6 +68,7 @@ export default function Home() {
   //   }
   // }, [theme, themeIcon]);
 
+
   const toggleTheme = () => {
     if (theme === 'light') {
       setTheme('dark')
@@ -50,7 +78,21 @@ export default function Home() {
     console.log(theme)
   }
 
+  let temp_size = 0
+  const handleSizeChange = (event: any) => {
+    temp_size = event.target.value
+  }
 
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(temp_size)
+    setMazeSize(temp_size)
+    setMaze(mazeGenerator(temp_size, temp_size))
+    console.log("new gENERATED MAZE", maze1d)
+  }
+  
   
 
 
@@ -77,10 +119,10 @@ export default function Home() {
           <div className=''>
             <h2 className='text-2xl lg:text-4xl xl:text-5xl '>Generate Maze</h2>
             <p className='text-base lg:text-xl xl:text-2xl font-light '>Chose a size for your maze</p>
-            <div className='flex flex-row mt-5'>
-              <input  className='flex flex-row align-middle justify-center text-2xl text-center bg-secondary  dark:bg-dark-secondary  rounded-xl w-36 border-2 border-primary drop-shadow-xl' type="text" placeholder="4-25" id="fname" name="fname"></input>
-              <button className='flex flex-row align-middle justify-center text-2xl bg-primary dark:text-text rounded-xl p-3 w-36 ml-6 drop-shadow-xl' > Generate</button>
-            </div>
+            <form onSubmit={handleSubmit} className='flex flex-row mt-5'>
+              <input  className='flex flex-row align-middle justify-center text-2xl text-center bg-secondary  dark:bg-dark-secondary  rounded-xl w-36 border-2 border-primary drop-shadow-xl' type="text" placeholder="4-25" id="fname" name="fname" onChange={handleSizeChange} ></input>
+              <button className='flex flex-row align-middle justify-center text-2xl bg-primary dark:text-text rounded-xl p-3 w-36 ml-6 drop-shadow-xl' type="submit"  > Generate</button>
+            </form>
           </div>
           <div className=' mt-14'>
             <h2 className='text-2xl lg:text-4xl xl:text-5xl'>Solving Algorithm</h2>
@@ -97,7 +139,7 @@ export default function Home() {
         </div>
         <div className=' flex-1 flex flex-row align-middle mt-5 lg:mt-px'>{/* maze canvas*/}
           <div className="aspect-square flex flex-col bg-primary mr-auto min-[1000px]:mr-0 ml-auto my-auto w-4/5 rounded-xl min-[2000px]:w-3/5 drop-shadow-xl" >
-            <Canvas />
+            <Canvas maze1d={maze1d} maze_size={maze_size}/>
           </div>
         </div>
       </div>
