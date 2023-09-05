@@ -4,26 +4,33 @@ import maze_logo_dark from "../public/mazelogo-dark.png"
 import moon_icon from "../public/moon-icon.png"
 import sun_icon from "../public/sun-icon.png"
 
-import { Bubblegum_Sans } from 'next/font/google'
+import Canvas from "./canvas";
+
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
 export default function Home() {
 
-  const [theme, setTheme] = useState('light')
+  
+  const [theme, setTheme] = useState(localStorage.getItem('theme')||'light')
   const [themeIcon, setThemeIcon] = useState(moon_icon)
   const [logoTheme, setLogoTheme] = useState(maze_logo)
 
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark')
+      localStorage.setItem('theme', 'dark')
       setThemeIcon(sun_icon)
       setLogoTheme(maze_logo_dark)
     } else {
       document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
       setThemeIcon(moon_icon)
       setLogoTheme(maze_logo)
     }
+
+    localStorage.setItem('theme', theme)
+
   }, [theme, themeIcon]);
 
   // useEffect(() => {
@@ -44,7 +51,7 @@ export default function Home() {
   }
 
 
-
+  
 
 
   return (
@@ -71,7 +78,7 @@ export default function Home() {
             <h2 className='text-2xl lg:text-4xl xl:text-5xl '>Generate Maze</h2>
             <p className='text-base lg:text-xl xl:text-2xl font-light '>Chose a size for your maze</p>
             <div className='flex flex-row mt-5'>
-              <input  className='flex flex-row align-middle justify-center text-2xl pl-14 bg-secondary  dark:bg-dark-secondary  rounded-xl w-36 border-2 border-primary drop-shadow-xl' type="text" placeholder="10" id="fname" name="fname"></input>
+              <input  className='flex flex-row align-middle justify-center text-2xl text-center bg-secondary  dark:bg-dark-secondary  rounded-xl w-36 border-2 border-primary drop-shadow-xl' type="text" placeholder="4-25" id="fname" name="fname"></input>
               <button className='flex flex-row align-middle justify-center text-2xl bg-primary dark:text-text rounded-xl p-3 w-36 ml-6 drop-shadow-xl' > Generate</button>
             </div>
           </div>
@@ -81,7 +88,7 @@ export default function Home() {
             <div className='grid grid-cols-3 gap-3 mt-5'>
               <button className='flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl bg-secondary dark:bg-dark-secondary rounded-xl p-2 drop-shadow-xl'> Depth First Search</button>
               <button className='flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl bg-secondary dark:bg-dark-secondary rounded-xl p-2 drop-shadow-xl'> Breadth First Search</button>
-              <button className='flex flex-row align-middle justify-center text-base lg:text-3xl xl:text-4xl bg-accent dark:bg-dark-accent dark:text-text rounded-xl p-2 pt-6 xl:pt-7 row-span-2 drop-shadow-xl'> Visualize</button>
+              <button className='flex flex-row align-middle justify-center text-base lg:text-3xl xl:text-4xl bg-accent dark:bg-dark-accent dark:text-text rounded-xl p-2 pt-6 xl:pt-7 row-span-2 drop-shadow-xl'> <p> Visualize</p></button>
               <button className='flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl bg-secondary dark:bg-dark-secondary rounded-xl p-2 drop-shadow-xl'> Greedy Search</button>
               <button className='flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl bg-secondary dark:bg-dark-secondary rounded-xl p-2 drop-shadow-xl'> A* Search</button>
               
@@ -89,8 +96,8 @@ export default function Home() {
           </div>
         </div>
         <div className=' flex-1 flex flex-row align-middle mt-5 lg:mt-px'>{/* maze canvas*/}
-          <div className="aspect-square flex flex-col bg-primary mr-auto min-[1000px]:mr-0 ml-auto my-auto w-4/5 rounded-xl min-[2000px]:w-3/5 drop-shadow-xl" id='maze'>
-            <canvas className='bg-secondary m-2 md:m-3 2xl:m-4 flex-1 rounded-md ' id='maze'></canvas>
+          <div className="aspect-square flex flex-col bg-primary mr-auto min-[1000px]:mr-0 ml-auto my-auto w-4/5 rounded-xl min-[2000px]:w-3/5 drop-shadow-xl" >
+            <Canvas />
           </div>
         </div>
       </div>
