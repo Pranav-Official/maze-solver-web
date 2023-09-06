@@ -86,17 +86,93 @@ const generateRandomNumber = (min: number, max: number) => {
       return [x, y];
     }
 
+    function neighbourVisted(
+      pixelCoordinates: [number, number]
+    ): [number, number][] {
+      const neighbours: [number, number][] = [];
+      const [i, j] = pixelCoordinates;
+  
+      try {
+        if (maze[i + 2][j] === 0) {
+          neighbours.push([i + 2, j]);
+        }
+      } catch (e) {}
+      try {
+        if (maze[i - 2][j] === 0) {
+          neighbours.push([i - 2, j]);
+        }
+      } catch (e) {}
+      try {
+        if (maze[i][j + 2] === 0) {
+          neighbours.push([i, j + 2]);
+        }
+      } catch (e) {}
+      try {
+        if (maze[i][j - 2] === 0) {
+          neighbours.push([i, j - 2]);
+        }
+      } catch (e) {}
+    
+      shuffleArray(neighbours);
+      return  neighbours;
+    }
+
+    function nearestVisited(coordinates: [number, number]): [number, number] {
+
+      const [x1, y1] = coordinates;
+
+      console.log("cordinated recived", coordinates)
+
+      // try {
+      //   if(visited.includes([x1+2, y1])) {
+      //     return [x1+2, y1]
+      //   }
+      // } catch (error) {}
+      // try {
+      //   if(visited.includes([x1-2, y1])) {
+      //     return [x1-2, y1]
+      //   }
+      // } catch (error) {}
+      // try {
+      //   if(visited.includes([x1, y1+2])) {
+      //     return [x1, y1+2]
+      //   }
+      // } catch (error) {}
+      // try {
+      //   if(visited.includes([x1, y1-2])) {
+      //     return [x1, y1-2]
+      //   }
+      // } catch (error) {}
+
+      let neighbours = neighbourVisted([x1, y1])
+
+      console.log("neighbours to the cordinated recived", neighbours)
+
+      // for(let i = 0; i < neighbours.length; i++) {
+      //   if(!visited.includes(neighbours[i])) {
+      //     neighbours.splice(i-1,1)
+      //   }
+      // // }
+      // console.log("nearest visited neighbours",neighbours)
+      return neighbours[0];
+      // return [x1, y1]
+    }
+
 
     // console.log("neighbours", neighbourblacks(pixelCoordinates, previousCoordinates));
     
     let visited = [[0,0]];
+    let stack = [[0,0]];
 
     function mazeCarver(pixelCoordinates: [number, number], previousCoordinates: [number, number]): void {
+      
+      do{
 
       let elementBetweenCoordinates = findElementBetweenCoordinates(pixelCoordinates, previousCoordinates, maze);
       console.log(elementBetweenCoordinates)
       maze[elementBetweenCoordinates[0]][elementBetweenCoordinates[1]] = 0;
       maze[pixelCoordinates[0]][pixelCoordinates[1]] = 0;
+      visited.push(pixelCoordinates);
 
       // for(let i = 0; i < visited.length; i++) {
       //   if(visited[i][0] === pixelCoordinates[0] && visited[i][1] === pixelCoordinates[1]) {
@@ -116,17 +192,24 @@ const generateRandomNumber = (min: number, max: number) => {
 
       console.log("neighbours poped",neighbours)
 
-      if(neighbours.length === 0) {
-        return
+      for(let i = 0; i < neighbours.length; i++) {
+        stack.push(neighbours[i]);
       }
+      console.log("neighbours pushed to stack")
       
-      visited.push(pixelCoordinates);
       previousCoordinates = pixelCoordinates;
       pixelCoordinates = neighbours[0];
-      mazeCarver(pixelCoordinates, previousCoordinates);
+
+      if(neighbours.length === 0) {
+        pixelCoordinates = stack.pop();
+        console.log("stack poped backtracking")
+        previousCoordinates = pixelCoordinates;
+        console.log("nearest visited", previousCoordinates)
+      }
+      
 
     
-
+    }while(stack.length > 1)
     
 
 
