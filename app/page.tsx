@@ -19,7 +19,7 @@ export default function Home() {
   const [theme, setTheme] = useState(localStorage.getItem('theme')||'light')
   const [themeIcon, setThemeIcon] = useState(moon_icon)
   const [logoTheme, setLogoTheme] = useState(maze_logo)
-  const [maze_size, setMazeSize] = useState(10)
+  const [maze_size, setMazeSize] = useState(11)
   // const [temp_size, setTempSize] = useState(-1)
   const [maze1d, setMaze] = useState<number[]>([]);
   // const [mazeKey, setMazeKey] = useState(0)
@@ -82,7 +82,7 @@ export default function Home() {
   let temp_size = -1
 
   const handleSizeChange = (event: any) => {
-    temp_size = parseInt(event.target.value)
+    temp_size = parseInt(event.target.value)+1
   }
 
 
@@ -90,7 +90,7 @@ export default function Home() {
     // event.preventDefault();
     console.log(temp_size)
 
-    if (temp_size <= 80 && temp_size > 5||temp_size === -1){
+    if (temp_size <= 100 && temp_size > 5||temp_size === -1){
       
     
 
