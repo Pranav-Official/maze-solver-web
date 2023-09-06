@@ -88,12 +88,13 @@ export default function Home() {
 
   const handleSubmit = () => {
     // event.preventDefault();
-    if(temp_size >100 || temp_size < 5){
+    console.log(temp_size)
+
+    if (temp_size <= 80 && temp_size > 5||temp_size === -1){
       
-    }
-    else{
-      console.log(temp_size)
-      if (temp_size > 0 && temp_size != maze_size) {
+    
+
+      if (temp_size > 0){
         setMazeSize(temp_size)
         setMaze(mazeGenerator(temp_size, temp_size));
       }
@@ -101,6 +102,9 @@ export default function Home() {
         setMaze(mazeGenerator(maze_size, maze_size));
       }
 
+    }
+    else{
+      alert("Please enter a valid size between 5 and 80")
     }
     
   }
