@@ -82,7 +82,10 @@ export default function Home() {
   let temp_size = -1
 
   const handleSizeChange = (event: any) => {
-    temp_size = parseInt(event.target.value)+1
+    temp_size = parseInt(event.target.value)
+    if(temp_size%2 === 0){
+      temp_size = temp_size + 1;
+    }
   }
 
 
@@ -136,7 +139,7 @@ export default function Home() {
             <h2 className='text-2xl lg:text-4xl xl:text-5xl '>Generate Maze</h2>
             <p className='text-base lg:text-xl xl:text-2xl font-light '>Chose a size for your maze</p>
             <div className='flex flex-row mt-5'>
-              <input  className='flex flex-row align-middle justify-center text-2xl text-center bg-secondary  dark:bg-dark-secondary  rounded-xl w-36 border-2 border-primary drop-shadow-xl' type="text" placeholder="5-100" id="fname" name="fname" onChange={handleSizeChange} ></input>
+              <input  className='flex flex-row align-middle justify-center text-2xl text-center bg-secondary  dark:bg-dark-secondary  rounded-xl w-36 border-2 border-primary drop-shadow-xl' type="number" placeholder="5-100" id="fname" name="fname" onChange={handleSizeChange} ></input>
               <button className='flex flex-row align-middle justify-center text-2xl bg-primary dark:text-text rounded-xl p-3 w-36 ml-6 drop-shadow-xl' onClick={handleSubmit}  > Generate</button>
             </div>
             {/* alert('Please use smaller maze dimensions'); */}
