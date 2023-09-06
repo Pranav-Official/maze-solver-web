@@ -19,6 +19,7 @@ const config: Config = {
       "dark-accent": "#A1E599",
       'dark-background': '#020C13',
       'dark-text': '#DEF0FC',
+      'text-red': '#FF0000',
 
 
     },

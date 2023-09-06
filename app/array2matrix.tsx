@@ -12,7 +12,7 @@ function array2matrix (arr: any[], rowLength: number): any[][] {
       if (currentRow.length === rowLength) {
         result.push(currentRow);
         currentRow = [];
-        console.log("pushing rows :", result.length)
+        // console.log("pushing rows :", result.length)
       }
       currentRow.push(item);
     }
