@@ -19,11 +19,12 @@ export default function Home() {
   const [theme, setTheme] = useState(localStorage.getItem('theme')||'light')
   const [themeIcon, setThemeIcon] = useState(moon_icon)
   const [logoTheme, setLogoTheme] = useState(maze_logo)
-  const [maze_size, setMazeSize] = useState(21)
-  const [maze1d, setMaze] = useState(mazeGenerator(maze_size, maze_size));
+  const [maze_size, setMazeSize] = useState(10)
+  // const [temp_size, setTempSize] = useState(-1)
+  const [maze1d, setMaze] = useState<number[]>([]);
   // const [mazeKey, setMazeKey] = useState(0)
 
-  console.log("flattend maze",maze1d);
+  // console.log("flattend maze",maze1d, "maze_size flated", maze_size);
 
   const maze2 = [
     [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
@@ -78,19 +79,21 @@ export default function Home() {
     console.log(theme)
   }
 
-  let temp_size = 0
+  let temp_size = -1
+
   const handleSizeChange = (event: any) => {
-    temp_size = event.target.value
+    temp_size = parseInt(event.target.value)
   }
 
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    event.stopPropagation();
+  const handleSubmit = () => {
+    // event.preventDefault();
     console.log(temp_size)
-    setMazeSize(temp_size)
-    setMaze(mazeGenerator(temp_size, temp_size))
-    console.log("new gENERATED MAZE", maze1d)
+    if (temp_size > 0){
+      setMazeSize(temp_size)
+      setMaze(mazeGenerator(maze_size, maze_size));
+    }
+    setMaze(mazeGenerator(maze_size, maze_size));
   }
   
   
@@ -119,10 +122,10 @@ export default function Home() {
           <div className=''>
             <h2 className='text-2xl lg:text-4xl xl:text-5xl '>Generate Maze</h2>
             <p className='text-base lg:text-xl xl:text-2xl font-light '>Chose a size for your maze</p>
-            <form onSubmit={handleSubmit} className='flex flex-row mt-5'>
+            <div className='flex flex-row mt-5'>
               <input  className='flex flex-row align-middle justify-center text-2xl text-center bg-secondary  dark:bg-dark-secondary  rounded-xl w-36 border-2 border-primary drop-shadow-xl' type="text" placeholder="4-25" id="fname" name="fname" onChange={handleSizeChange} ></input>
-              <button className='flex flex-row align-middle justify-center text-2xl bg-primary dark:text-text rounded-xl p-3 w-36 ml-6 drop-shadow-xl' type="submit"  > Generate</button>
-            </form>
+              <button className='flex flex-row align-middle justify-center text-2xl bg-primary dark:text-text rounded-xl p-3 w-36 ml-6 drop-shadow-xl' onClick={handleSubmit}  > Generate</button>
+            </div>
           </div>
           <div className=' mt-14'>
             <h2 className='text-2xl lg:text-4xl xl:text-5xl'>Solving Algorithm</h2>

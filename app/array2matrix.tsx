@@ -12,6 +12,7 @@ function array2matrix (arr: any[], rowLength: number): any[][] {
       if (currentRow.length === rowLength) {
         result.push(currentRow);
         currentRow = [];
+        console.log("pushing rows :", result.length)
       }
       currentRow.push(item);
     }
@@ -20,7 +21,8 @@ function array2matrix (arr: any[], rowLength: number): any[][] {
     if (currentRow.length > 0) {
       result.push(currentRow);
     }
-  
+    
+    console.log("2dify done",result, "rowLength", rowLength);
     return result;
   }
 

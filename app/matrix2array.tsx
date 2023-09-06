@@ -1,7 +1,9 @@
 // Fuction to generate a array from a matrix
 const matrix2array = (matrix: number[][]) => {
-    return matrix.flat();
+    console.log("flattening done", matrix.flat())
 
+    return matrix.flat();
+    
 
 }
 

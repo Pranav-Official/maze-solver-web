@@ -1,3 +1,5 @@
+import matrix2array from "./matrix2array";
+
 // Function to generate a random number between two given numbers
 const generateRandomNumber = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -85,7 +87,7 @@ const generateRandomNumber = (min: number, max: number) => {
     // }
     
     // console.log(maze);
-    return maze.flat();
+    return matrix2array(maze);
     
   };
   
