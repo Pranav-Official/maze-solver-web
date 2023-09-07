@@ -162,12 +162,14 @@ const generateRandomNumber = (min: number, max: number) => {
     // console.log("neighbours", neighbourblacks(pixelCoordinates, previousCoordinates));
     
     let visited = [[0,0]];
-    let stack = [[0,0]];
+    let stack = [[[0,0]]];
+    stack.pop();
 
     function mazeCarver(pixelCoordinates: [number, number], previousCoordinates: [number, number]): void {
-      
+      let i = 1;
       do{
 
+        console.log("itreration : ", i++);
       let elementBetweenCoordinates = findElementBetweenCoordinates(pixelCoordinates, previousCoordinates, maze);
       console.log(elementBetweenCoordinates)
       maze[elementBetweenCoordinates[0]][elementBetweenCoordinates[1]] = 0;
@@ -193,18 +195,31 @@ const generateRandomNumber = (min: number, max: number) => {
       console.log("neighbours poped",neighbours)
 
       for(let i = 0; i < neighbours.length; i++) {
-        stack.push(neighbours[i]);
+        stack.push([neighbours[i], pixelCoordinates]);
       }
       console.log("neighbours pushed to stack")
       
       previousCoordinates = pixelCoordinates;
-      pixelCoordinates = neighbours[0];
+      
+      console.log("stack ",stack)
+      shuffleArray(stack);
 
       if(neighbours.length === 0) {
-        pixelCoordinates = stack.pop();
-        console.log("stack poped backtracking")
-        previousCoordinates = pixelCoordinates;
+        console.log("backtracking")
+        let temp = stack.pop();
+        console.log("temp",temp)
+        let coordinates = temp[0];
+        pixelCoordinates[0] = temp[0][0];
+        pixelCoordinates[1] = temp[0][1];
+        console.log("pixel coordinates",pixelCoordinates)
+        console.log("coordinates",coordinates)
+        previousCoordinates[0] = temp[1][0];
+        previousCoordinates[1] = temp[1][1];
         console.log("nearest visited", previousCoordinates)
+      }
+      else{
+        pixelCoordinates = neighbours[0];
+
       }
       
 
