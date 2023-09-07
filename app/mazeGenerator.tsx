@@ -86,17 +86,95 @@ const generateRandomNumber = (min: number, max: number) => {
       return [x, y];
     }
 
+    function neighbourVisted(
+      pixelCoordinates: [number, number]
+    ): [number, number][] {
+      const neighbours: [number, number][] = [];
+      const [i, j] = pixelCoordinates;
+  
+      try {
+        if (maze[i + 2][j] === 0) {
+          neighbours.push([i + 2, j]);
+        }
+      } catch (e) {}
+      try {
+        if (maze[i - 2][j] === 0) {
+          neighbours.push([i - 2, j]);
+        }
+      } catch (e) {}
+      try {
+        if (maze[i][j + 2] === 0) {
+          neighbours.push([i, j + 2]);
+        }
+      } catch (e) {}
+      try {
+        if (maze[i][j - 2] === 0) {
+          neighbours.push([i, j - 2]);
+        }
+      } catch (e) {}
+    
+      shuffleArray(neighbours);
+      return  neighbours;
+    }
+
+    function nearestVisited(coordinates: [number, number]): [number, number] {
+
+      const [x1, y1] = coordinates;
+
+      console.log("cordinated recived", coordinates)
+
+      // try {
+      //   if(visited.includes([x1+2, y1])) {
+      //     return [x1+2, y1]
+      //   }
+      // } catch (error) {}
+      // try {
+      //   if(visited.includes([x1-2, y1])) {
+      //     return [x1-2, y1]
+      //   }
+      // } catch (error) {}
+      // try {
+      //   if(visited.includes([x1, y1+2])) {
+      //     return [x1, y1+2]
+      //   }
+      // } catch (error) {}
+      // try {
+      //   if(visited.includes([x1, y1-2])) {
+      //     return [x1, y1-2]
+      //   }
+      // } catch (error) {}
+
+      let neighbours = neighbourVisted([x1, y1])
+
+      console.log("neighbours to the cordinated recived", neighbours)
+
+      // for(let i = 0; i < neighbours.length; i++) {
+      //   if(!visited.includes(neighbours[i])) {
+      //     neighbours.splice(i-1,1)
+      //   }
+      // // }
+      // console.log("nearest visited neighbours",neighbours)
+      return neighbours[0];
+      // return [x1, y1]
+    }
+
 
     // console.log("neighbours", neighbourblacks(pixelCoordinates, previousCoordinates));
     
     let visited = [[0,0]];
+    let stack = [[[0,0]]];
+    stack.pop();
 
     function mazeCarver(pixelCoordinates: [number, number], previousCoordinates: [number, number]): void {
+      let i = 1;
+      do{
 
+        console.log("itreration : ", i++);
       let elementBetweenCoordinates = findElementBetweenCoordinates(pixelCoordinates, previousCoordinates, maze);
       console.log(elementBetweenCoordinates)
       maze[elementBetweenCoordinates[0]][elementBetweenCoordinates[1]] = 0;
       maze[pixelCoordinates[0]][pixelCoordinates[1]] = 0;
+      visited.push(pixelCoordinates);
 
       // for(let i = 0; i < visited.length; i++) {
       //   if(visited[i][0] === pixelCoordinates[0] && visited[i][1] === pixelCoordinates[1]) {
@@ -116,17 +194,37 @@ const generateRandomNumber = (min: number, max: number) => {
 
       console.log("neighbours poped",neighbours)
 
+      for(let i = 0; i < neighbours.length; i++) {
+        stack.push([neighbours[i], pixelCoordinates]);
+      }
+      console.log("neighbours pushed to stack")
+      
+      previousCoordinates = pixelCoordinates;
+      
+      console.log("stack ",stack)
+      shuffleArray(stack);
+
       if(neighbours.length === 0) {
-        return
+        console.log("backtracking")
+        let temp = stack.pop();
+        console.log("temp",temp)
+        let coordinates = temp[0];
+        pixelCoordinates[0] = temp[0][0];
+        pixelCoordinates[1] = temp[0][1];
+        console.log("pixel coordinates",pixelCoordinates)
+        console.log("coordinates",coordinates)
+        previousCoordinates[0] = temp[1][0];
+        previousCoordinates[1] = temp[1][1];
+        console.log("nearest visited", previousCoordinates)
+      }
+      else{
+        pixelCoordinates = neighbours[0];
+
       }
       
-      visited.push(pixelCoordinates);
-      previousCoordinates = pixelCoordinates;
-      pixelCoordinates = neighbours[0];
-      mazeCarver(pixelCoordinates, previousCoordinates);
 
     
-
+    }while(stack.length > 1)
     
 
 
