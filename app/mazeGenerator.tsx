@@ -171,7 +171,7 @@ const generateRandomNumber = (min: number, max: number) => {
 
         console.log("itreration : ", i++);
       let elementBetweenCoordinates = findElementBetweenCoordinates(pixelCoordinates, previousCoordinates, maze);
-      console.log(elementBetweenCoordinates)
+      //console.log(elementBetweenCoordinates)
       maze[elementBetweenCoordinates[0]][elementBetweenCoordinates[1]] = 0;
       maze[pixelCoordinates[0]][pixelCoordinates[1]] = 0;
       visited.push(pixelCoordinates);
@@ -184,7 +184,7 @@ const generateRandomNumber = (min: number, max: number) => {
       // }
       
       let neighbours = neighbourblacks(pixelCoordinates, previousCoordinates);
-      console.log("neighbours",neighbours)
+      //console.log("neighbours",neighbours)
 
       for(let i = neighbours.length; i > 0; i--) {
           if(visited.includes(neighbours[i-1])) {
@@ -192,12 +192,12 @@ const generateRandomNumber = (min: number, max: number) => {
           }
       }
 
-      console.log("neighbours poped",neighbours)
+      //console.log("neighbours poped",neighbours)
 
       for(let i = 0; i < neighbours.length; i++) {
         stack.push([neighbours[i], pixelCoordinates]);
       }
-      console.log("neighbours pushed to stack")
+      //console.log("neighbours pushed to stack")
       
       previousCoordinates = pixelCoordinates;
       
@@ -211,11 +211,11 @@ const generateRandomNumber = (min: number, max: number) => {
         let coordinates = temp[0];
         pixelCoordinates[0] = temp[0][0];
         pixelCoordinates[1] = temp[0][1];
-        console.log("pixel coordinates",pixelCoordinates)
-        console.log("coordinates",coordinates)
+        //console.log("pixel coordinates",pixelCoordinates)
+        //console.log("coordinates",coordinates)
         previousCoordinates[0] = temp[1][0];
         previousCoordinates[1] = temp[1][1];
-        console.log("nearest visited", previousCoordinates)
+        //console.log("nearest visited", previousCoordinates)
       }
       else{
         pixelCoordinates = neighbours[0];
