@@ -12,10 +12,10 @@ const generateRandomNumber = (min: number, max: number) => {
     );
   
     // Ensure the entry and exit points are between the 2nd column and 2nd last column
-    const entryCol = Math.floor(Math.random() * (columns - 5)) + 2;
-    // const exitCol = Math.floor(Math.random() * (columns - 5)) + 2;
+    const entryCol = Math.floor(Math.random() * (columns - 5)/2)*2 + 1;
+    const exitCol = Math.floor(Math.random() * (columns - 5)/2)*2 + 1;
   
-    maze[0][1] = 0;
+    maze[0][entryCol] = 0;
     // maze[rows - 1][exitCol] = 0;
 
     // create maze using recusrive backtraking algorithm by modifying the maze and removing the walls
@@ -232,12 +232,20 @@ const generateRandomNumber = (min: number, max: number) => {
 
 
 
-    const pixelCoordinates: [number, number] = [1, 1]; // Replace 'x' and 'y' with the actual pixel coordinates
-    const previousCoordinates: [number, number] = [0, 1];
+    const pixelCoordinates: [number, number] = [1, entryCol]; // Replace 'x' and 'y' with the actual pixel coordinates
+    const previousCoordinates: [number, number] = [0, entryCol];
 
 
 
     mazeCarver(pixelCoordinates, previousCoordinates);
+
+    if(maze[rows - 2][exitCol] === 1) {
+      maze[rows - 1][exitCol+1] = 0;
+    }
+    else {
+      maze[rows - 1][exitCol] = 0;
+    }
+
 
     // console.log(maze);
     return matrix2array(maze);
