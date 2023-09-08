@@ -17,8 +17,8 @@ Welcome to the Maze Solver Web Application! This interactive web application is 
 ## Current Status
 
 - UI complete along with dark mode!
+- Implementaion of maze generation(completed!).
 - Canvas need to be made(pending).
-- Implementaion of maze generation(pending).
 - Implementation of Maze solving(pending).
 
 ## Getting Started
