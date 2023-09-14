@@ -12,6 +12,7 @@ import Canvas from "./canvas";
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import matrix2array from "./matrix2array";
+import { log } from "console";
 
 export default function Home() {
 
@@ -23,6 +24,8 @@ export default function Home() {
   // const [temp_size, setTempSize] = useState(-1)
   const [maze1d, setMaze] = useState<number[]>([]);
   // const [mazeKey, setMazeKey] = useState(0)
+
+  const [algorithm, setAlgorithm] = useState(-1)
 
   // console.log("flattend maze",maze1d, "maze_size flated", maze_size);
 
@@ -109,6 +112,16 @@ export default function Home() {
     }
     
   }
+
+
+  
+
+  // dfs = 1, bfs = 2, greedy = 3, astar = 4,
+
+  const handleChooseAlgorithm = (option: any) => {
+    setAlgorithm(option)
+    console.log(algorithm);
+  }
   
   
 
@@ -146,11 +159,11 @@ export default function Home() {
             <h2 className='text-2xl lg:text-4xl xl:text-5xl'>Solving Algorithm</h2>
             <p className='text-base lg:text-xl xl:text-2xl font-light '>Chose a Algorithm which you want to use for the solution.</p>
             <div className='grid grid-cols-3 gap-3 mt-5'>
-              <button className='flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary rounded-xl p-2 drop-shadow-xl'> Depth First Search</button>
-              <button className='flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary rounded-xl p-2 drop-shadow-xl'> Breadth First Search</button>
-              <button className='flex flex-row align-middle justify-center text-base lg:text-3xl xl:text-4xl bg-accent hover:bg-hover-accent dark:hover:bg-hover-dark-accent dark:bg-dark-accent dark:text-text rounded-xl p-2 pt-6 xl:pt-7 row-span-2 drop-shadow-xl'> <p> Visualize</p></button>
-              <button className='flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary rounded-xl p-2 drop-shadow-xl'> Greedy Search</button>
-              <button className='flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary rounded-xl p-2 drop-shadow-xl'> A* Search</button>
+              <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${algorithm === 1 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(1)}> Depth First Search</button>
+              <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${algorithm === 2 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(2)}> Breadth First Search</button>
+              <button className='flex flex-row align-middle justify-center text-base lg:text-3xl xl:text-4xl bg-accent hover:bg-hover-accent dark:hover:bg-hover-dark-accent dark:bg-dark-accent dark:text-text rounded-xl p-2 pt-6 xl:pt-7 row-span-2 drop-shadow-xl' > <p> Visualize</p></button>
+              <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${algorithm === 3 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(3)}> Greedy Search</button>
+              <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${algorithm === 4 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(4)}> A* Search</button>
               
             </div>
           </div>
