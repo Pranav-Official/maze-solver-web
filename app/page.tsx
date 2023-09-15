@@ -3,7 +3,7 @@ import maze_logo from "../public/mazelogo.png"
 import maze_logo_dark from "../public/mazelogo-dark.png"
 import moon_icon from "../public/moon-icon.png"
 import sun_icon from "../public/sun-icon.png"
-import mazeGenerator from "./mazeGenerator";
+import mazeGenerator from "./Fuctions/mazeGenerator";
 
 
 import Canvas from "./Components/canvas";

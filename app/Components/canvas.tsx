@@ -1,6 +1,6 @@
 import React from "react";
 import {useRef, useEffect, useState } from "react";
-import mazeGenerator from "../mazeGenerator";
+import mazeGenerator from "../Fuctions/mazeGenerator";
 import array2matrix from "../Fuctions/array2matrix";
 
 const Canvas = (props:any) => {

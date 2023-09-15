@@ -1,4 +1,4 @@
-import matrix2array from "./Fuctions/matrix2array";
+import matrix2array from "./matrix2array";
 
 // Function to generate a random number between two given numbers
 const generateRandomNumber = (min: number, max: number) => {
