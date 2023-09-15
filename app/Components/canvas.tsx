@@ -1,7 +1,7 @@
 import React from "react";
 import {useRef, useEffect, useState } from "react";
-import mazeGenerator from "./mazeGenerator";
-import array2matrix from "./array2matrix";
+import mazeGenerator from "../mazeGenerator";
+import array2matrix from "../Fuctions/array2matrix";
 
 const Canvas = (props:any) => {
   const canvasRef = useRef<HTMLCanvasElement | null >(null);

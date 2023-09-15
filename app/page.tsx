@@ -5,13 +5,12 @@ import moon_icon from "../public/moon-icon.png"
 import sun_icon from "../public/sun-icon.png"
 import mazeGenerator from "./mazeGenerator";
 
-import draw from "./draw";
 
-import Canvas from "./canvas";
+import Canvas from "./Components/canvas";
 
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
-import matrix2array from "./matrix2array";
+import matrix2array from "./Fuctions/matrix2array";
 import { log } from "console";
 
 export default function Home() {

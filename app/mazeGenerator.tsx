@@ -1,4 +1,4 @@
-import matrix2array from "./matrix2array";
+import matrix2array from "./Fuctions/matrix2array";
 
 // Function to generate a random number between two given numbers
 const generateRandomNumber = (min: number, max: number) => {
@@ -117,51 +117,10 @@ const generateRandomNumber = (min: number, max: number) => {
       return  neighbours;
     }
 
-    function nearestVisited(coordinates: [number, number]): [number, number] {
-
-      const [x1, y1] = coordinates;
-
-      console.log("cordinated recived", coordinates)
-
-      // try {
-      //   if(visited.includes([x1+2, y1])) {
-      //     return [x1+2, y1]
-      //   }
-      // } catch (error) {}
-      // try {
-      //   if(visited.includes([x1-2, y1])) {
-      //     return [x1-2, y1]
-      //   }
-      // } catch (error) {}
-      // try {
-      //   if(visited.includes([x1, y1+2])) {
-      //     return [x1, y1+2]
-      //   }
-      // } catch (error) {}
-      // try {
-      //   if(visited.includes([x1, y1-2])) {
-      //     return [x1, y1-2]
-      //   }
-      // } catch (error) {}
-
-      let neighbours = neighbourVisted([x1, y1])
-
-      console.log("neighbours to the cordinated recived", neighbours)
-
-      // for(let i = 0; i < neighbours.length; i++) {
-      //   if(!visited.includes(neighbours[i])) {
-      //     neighbours.splice(i-1,1)
-      //   }
-      // // }
-      // console.log("nearest visited neighbours",neighbours)
-      return neighbours[0];
-      // return [x1, y1]
-    }
-
-
-    // console.log("neighbours", neighbourblacks(pixelCoordinates, previousCoordinates));
     
-    let visited = [[0,0]];
+
+
+    
     let stack = [[[0,0]]];
     stack.pop();
 
@@ -174,20 +133,13 @@ const generateRandomNumber = (min: number, max: number) => {
       //console.log(elementBetweenCoordinates)
       maze[elementBetweenCoordinates[0]][elementBetweenCoordinates[1]] = 0;
       maze[pixelCoordinates[0]][pixelCoordinates[1]] = 0;
-      visited.push(pixelCoordinates);
-
-      // for(let i = 0; i < visited.length; i++) {
-      //   if(visited[i][0] === pixelCoordinates[0] && visited[i][1] === pixelCoordinates[1]) {
-      //     return
-      // }
-
-      // }
+    
       
       let neighbours = neighbourblacks(pixelCoordinates, previousCoordinates);
       //console.log("neighbours",neighbours)
 
       for(let i = neighbours.length; i > 0; i--) {
-          if(visited.includes(neighbours[i-1])) {
+          if(maze[neighbours[i-1][0]][neighbours[i-1][1]] === 0) {
             neighbours.splice(i-1,1)
           }
       }
