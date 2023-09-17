@@ -12,6 +12,7 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import matrix2array from "./Fuctions/matrix2array";
 import { log } from "console";
+import dfsVisualization from "./Solving Algorithms/dfs";
 
 export default function Home() {
 
@@ -120,8 +121,14 @@ export default function Home() {
   const handleChooseAlgorithm = (option: any) => {
     setAlgorithm(option)
     console.log(algorithm);
+
   }
   
+
+  const VisualizeMaze = () => {
+    console.log("VusualizeMaze wth option: ", algorithm);
+    dfsVisualization(maze1d, algorithm);
+  }
   
 
 
@@ -160,7 +167,7 @@ export default function Home() {
             <div className='grid grid-cols-3 gap-3 mt-5'>
               <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${algorithm === 1 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(1)}> Depth First Search</button>
               <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${algorithm === 2 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(2)}> Breadth First Search</button>
-              <button className='flex flex-row align-middle justify-center text-base lg:text-3xl xl:text-4xl bg-accent hover:bg-hover-accent dark:hover:bg-hover-dark-accent dark:bg-dark-accent dark:text-text rounded-xl p-2 pt-6 xl:pt-7 row-span-2 drop-shadow-xl' > <p> Visualize</p></button>
+              <button className={`flex flex-row align-middle justify-center text-base lg:text-3xl xl:text-4xl  bg-accent hover:bg-hover-accent dark:hover:bg-hover-dark-accent dark:bg-dark-accent dark:text-text rounded-xl p-2 pt-6 xl:pt-7 row-span-2 drop-shadow-xl ${algorithm === -1 ? 'cursor-not-allowed' : ''}`} onClick={VisualizeMaze} > <p> Visualize</p></button>
               <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${algorithm === 3 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(3)}> Greedy Search</button>
               <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${algorithm === 4 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(4)}> A* Search</button>
               

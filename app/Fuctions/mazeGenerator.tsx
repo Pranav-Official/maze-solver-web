@@ -65,6 +65,7 @@ const generateRandomNumber = (min: number, max: number) => {
         [array[i], array[j]] = [array[j], array[i]];
       }
     }
+    
 
     function findElementBetweenCoordinates(
       coordinates1: [number, number],
