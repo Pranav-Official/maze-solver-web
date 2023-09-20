@@ -54,21 +54,20 @@ export default function Home() {
 
   useEffect(() => {
     
-    setTheme(localStorage.getItem('theme')||'light')
 
     if (theme === 'dark') {
       document.documentElement.classList.add('dark')
-      localStorage.setItem('theme', 'dark')
+      // localStorage.setItem('theme', 'dark')
       setThemeIcon(sun_icon)
       setLogoTheme(maze_logo_dark)
     } else {
       document.documentElement.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
+      // localStorage.setItem('theme', 'light')
       setThemeIcon(moon_icon)
       setLogoTheme(maze_logo)
     }
 
-    localStorage.setItem('theme', theme)
+    // localStorage.setItem('theme', theme)
 
   }, [theme, themeIcon]);
 
