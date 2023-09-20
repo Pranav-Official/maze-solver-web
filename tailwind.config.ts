@@ -19,6 +19,13 @@ const config: Config = {
       "dark-accent": "#A1E599",
       'dark-background': '#020C13',
       'dark-text': '#DEF0FC',
+      'text-red': '#FF0000',
+      'hover-primary': '#56A6DB',
+      'hover-secondary': '#82C2EA',
+      "hover-accent": "#339228",
+      'hover-dark-primary': '#56A6DB',
+      'hover-dark-secondary': '#0C2E42',
+      "hover-dark-accent": "#7BB974",
 
 
     },
