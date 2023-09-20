@@ -19,8 +19,8 @@ import availableMoves from "./Fuctions/availableMoves";
 
 export default function Home() {
 
+  const [theme, setTheme] = useState('light')
   
-  const [theme, setTheme] = useState(localStorage.getItem('theme')||'light')
   const [themeIcon, setThemeIcon] = useState(moon_icon)
   const [logoTheme, setLogoTheme] = useState(maze_logo)
   const [maze_size, setMazeSize] = useState(11)
@@ -53,6 +53,9 @@ export default function Home() {
   
 
   useEffect(() => {
+    
+    setTheme(localStorage.getItem('theme')||'light')
+
     if (theme === 'dark') {
       document.documentElement.classList.add('dark')
       localStorage.setItem('theme', 'dark')
