@@ -18,8 +18,8 @@ Welcome to the Maze Solver Web Application! This interactive web application is 
 
 - UI complete along with dark mode!
 - Implementaion of maze generation(completed!).
-- Canvas need to be made(pending).
-- Implementation of Maze solving(pending).
+- Canvas need to be made(Completed!).
+- Implementation of Maze solving(DFS COMPLETED!).
 
 ## Getting Started
 
