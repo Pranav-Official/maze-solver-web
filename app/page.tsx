@@ -166,7 +166,7 @@ export default function Home() {
           </button>
           <button className='flex flex-row align-middle justify-center bg-primary hover:bg-hover-primary rounded-lg mt-3 py-1 md:my-auto drop-shadow-xl 'onClick={() => window.location.href = 'https://github.com/Pranav-Official/maze-solver-web'}>
             <p className=' hidden md:block mt-4 ml-3 mr-2 text-xl font-bold dark:text-text' >GitHub</p>
-            <Image className ="m-2 mx-5 md:py-1 md:my-3 md:mr-3" src="/github.png" alt="maze" width={30} height={30} />
+            <Image className ="m-2 mx-5 md:mx-0 md:py-1 md:my-3 md:mr-3" src="/github.png" alt="maze" width={30} height={30} />
           </button>
         </div>
       </div>
