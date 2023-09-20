@@ -170,10 +170,10 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div className='flex-1 flex flex-col lg:flex-row mb-0 justify-between min-[1800px]:w-4/5 min-[1800px]:mx-auto'>{/* hero part*/}
+      <div className='flex-1 flex flex-col-reverse lg:flex-row mb-0 justify-between min-[1800px]:w-4/5 min-[1800px]:mx-auto'>{/* hero part*/}
         <div className='flex flex-col align-middle justify-center '>{/* options*/}
           <div className=''>
-            <h2 className='text-2xl lg:text-4xl xl:text-5xl '>Generate Maze</h2>
+            <h2 className='text-2xl mt-5 lg:text-4xl xl:text-5xl '>Generate Maze</h2>
             <p className='text-base lg:text-xl xl:text-2xl font-light '>Chose a size for your maze</p>
             <div className='flex flex-row mt-5'>
               <input  className='flex flex-row align-middle justify-center text-2xl text-center bg-secondary  dark:bg-dark-secondary  rounded-xl w-36 border-2 border-primary drop-shadow-xl' type="text" placeholder="4-50" id="fname" name="fname" onChange={handleSizeChange} ></input>
