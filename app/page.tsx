@@ -164,7 +164,7 @@ export default function Home() {
           <button className='fixed md:static top-28 -right-3 flex flex-row align-middle justify-center mr-2 md:mr-5 md:mt-1 w-16 h-16 border-2 md:border-0 rounded-tl-3xl rounded-bl-3xl ' onClick={toggleTheme}>
               <Image className ="p-4" src={themeIcon} alt="maze" width={100} height={100} />
           </button>
-          <button className='flex flex-row align-middle justify-center bg-primary hover:bg-hover-primary rounded-lg mt-3 py-1 md:my-auto drop-shadow-xl '>
+          <button className='flex flex-row align-middle justify-center bg-primary hover:bg-hover-primary rounded-lg mt-3 py-1 md:my-auto drop-shadow-xl 'onClick={() => window.location.href = 'https://github.com/Pranav-Official/maze-solver-web'}>
             <p className=' collapse md:visible mt-4 ml-3 mr-2 text-xl font-bold dark:text-text' >GitHub</p>
             <Image className ="m-2 md:py-1 md:my-3 md:mr-3" src="/github.png" alt="maze" width={30} height={30} />
           </button>
