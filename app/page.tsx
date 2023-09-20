@@ -157,7 +157,7 @@ export default function Home() {
       <div className='flex flex-row h-28 justify-between'> {/* the top navbar*/}
         <div className='flex flex-row'>
         <Image className='collapse md:visible py-6 pr-3 ' src={logoTheme} alt="maze" width={80} height={80} />
-        <h1 className='text-4xl md:text-7xl py-11 md:py-6 px-1 md:px-3'>MazeVisualizer</h1>
+        <h1 className='text-3xl m-0 md:text-7xl py-11 md:py-6 px-0 md:px-3'>MazeVisualizer</h1>
         </div>
         
         <div className=' my-6 flex flex-row align-middle justify-center'>
