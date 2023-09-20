@@ -29,6 +29,7 @@ export default function Home() {
   // const [mazeKey, setMazeKey] = useState(0)
 
   const [algorithm, setAlgorithm] = useState(-1)
+  const [solutionKey, setSolutionKey] = useState(0)
 
   // console.log("flattend maze",maze1d, "maze_size flated", maze_size);
 
@@ -105,9 +106,11 @@ export default function Home() {
       if (temp_size > 0){
         setMazeSize(temp_size)
         setMaze(mazeGenerator(temp_size, temp_size));
+        setAlgorithm(-1)
       }
       else{
         setMaze(mazeGenerator(maze_size, maze_size));
+        setAlgorithm(-1)
       }
 
     }
@@ -122,83 +125,26 @@ export default function Home() {
 
   // dfs = 1, bfs = 2, greedy = 3, astar = 4,
 
+  const [tempAlgorithm, setTempAlgorithm] = useState(-1)
   const handleChooseAlgorithm = (option: any) => {
-    setAlgorithm(option)
-    console.log(algorithm);
+    setTempAlgorithm(option)
+    console.log(option);
 
   }
   
 
   const VisualizeMaze = () => {
+    if (tempAlgorithm === 1){
+      setAlgorithm(tempAlgorithm);
+      setSolutionKey(solutionKey+1);
+    }
+    else if(tempAlgorithm != -1){
+      alert("Only Depth First Search have been implemented at this point in time, Please choose another algorithm")
+    }
+    
     console.log("VusualizeMaze wth option: ", algorithm);
-    dfsVisualization(maze1d, algorithm);
-    dfsSolver();
   }
   
-
-  //dfs algorithm to solve the maze
-
-  const dfsSolver = () => {
-    let visited = [[0,0]];
-    let path = [[0,0]];
-    let stack = [[0,0]];
-    
-    visited.pop();
-    stack.pop();
-    path.pop();
-
-    let mazetemp = array2matrix(maze1d, maze_size);
-
-    let entrypoint = [0,0]; 
-    let exitpoint = [0,0];
-
-    const trimDuplicates = (arr:number[][], arr2:number[][])  => {
-
-      let temp = [];
-      for(let i = 0; i < arr.length; i++) {
-        if(!arr2.includes(arr[i])) {
-          temp.push(arr[i]);
-        }
-      }
-      return temp;
-    }
-
-    const tracePath = (arr:number[][], value:number) => {
-      for (let i = 0; i < arr.length; i++) {
-        mazetemp[arr[i][0]][arr[i][1]] = value;
-        maze1d[mazetemp.length*arr[i][0]+arr[i][1]] = value;
-      }
-    }
-
-
-
-    for(let i = 0; i < mazetemp[0].length; i++) {
-      if(mazetemp[0][i] === 0) {
-        entrypoint = [0,i];
-      }
-      if(mazetemp[mazetemp.length-1][i] === 0) {
-        exitpoint = [mazetemp.length-1,i];
-      }
-    }
-
-    console.log("entrypoint",entrypoint);
-    console.log("exitpoint",exitpoint);
-    let test = maze1d;
-    test[2] = 2;
-
-    setMaze(test);  
-    console.log("maze1d",maze1d);
-
-
-  }
-
-
-
-
-
-
-
-
 
 
 
@@ -237,18 +183,18 @@ export default function Home() {
             <h2 className='text-2xl lg:text-4xl xl:text-5xl'>Solving Algorithm</h2>
             <p className='text-base lg:text-xl xl:text-2xl font-light '>Chose a Algorithm which you want to use for the solution.</p>
             <div className='grid grid-cols-3 gap-3 mt-5'>
-              <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${algorithm === 1 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(1)}> Depth First Search</button>
-              <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${algorithm === 2 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(2)}> Breadth First Search</button>
-              <button className={`flex flex-row align-middle justify-center text-base lg:text-3xl xl:text-4xl  bg-accent hover:bg-hover-accent dark:hover:bg-hover-dark-accent dark:bg-dark-accent dark:text-text rounded-xl p-2 pt-6 xl:pt-7 row-span-2 drop-shadow-xl ${algorithm === -1 ? 'cursor-not-allowed' : ''}`} onClick={VisualizeMaze} > <p> Visualize</p></button>
-              <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${algorithm === 3 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(3)}> Greedy Search</button>
-              <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${algorithm === 4 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(4)}> A* Search</button>
+              <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${tempAlgorithm=== 1 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(1)}> Depth First Search</button>
+              <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${tempAlgorithm === 2 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(2)}> Breadth First Search</button>
+              <button className={`flex flex-row align-middle justify-center text-base lg:text-3xl xl:text-4xl  bg-accent hover:bg-hover-accent dark:hover:bg-hover-dark-accent dark:bg-dark-accent dark:text-text rounded-xl p-2 pt-6 xl:pt-7 row-span-2 drop-shadow-xl ${tempAlgorithm === -1 ? 'cursor-not-allowed' : ''}`} onClick={VisualizeMaze} > <p> Visualize</p></button>
+              <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${tempAlgorithm === 3 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(3)}> Greedy Search</button>
+              <button className={`flex flex-row align-middle justify-center text-xs lg:text-base xl:text-xl rounded-xl p-2 drop-shadow-xl   ${tempAlgorithm=== 4 ? 'bg-primary dark:text-text' : 'bg-secondary hover:bg-hover-secondary dark:bg-dark-secondary dark:hover:bg-hover-dark-secondary'}`} onClick={() => handleChooseAlgorithm(4)}> A* Search</button>
               
             </div>
           </div>
         </div>
         <div className=' flex-1 flex flex-row align-middle mt-5 lg:mt-px'>{/* maze canvas*/}
           <div className="aspect-square flex flex-col bg-primary mr-auto min-[1000px]:mr-0 ml-auto my-auto w-4/5 rounded-xl min-[2000px]:w-3/5 drop-shadow-xl" >
-            <Canvas maze1d={maze1d} maze_size={maze_size}/>
+            <Canvas maze1d={maze1d} maze_size={maze_size} algorithm={algorithm} key = {solutionKey}/>
           </div>
         </div>
       </div>

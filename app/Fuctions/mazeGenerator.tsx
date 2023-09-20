@@ -1,4 +1,5 @@
 import matrix2array from "./matrix2array";
+import shuffleArray from "./shuffleArray";
 
 // Function to generate a random number between two given numbers
 const generateRandomNumber = (min: number, max: number) => {
@@ -178,10 +179,11 @@ const generateRandomNumber = (min: number, max: number) => {
 
     
     }while(stack.length > 1)
-    
-
 
     }
+
+
+    
 
 
 
@@ -198,6 +200,40 @@ const generateRandomNumber = (min: number, max: number) => {
     else {
       maze[rows - 1][exitCol] = 0;
     }
+
+    //code to run random 1s in the matrix to 0s
+
+
+    let wall_spots=[];
+
+    for(let i = 0; i < 4; i++){
+
+      let x = maze.length-2;
+      let y =Math.floor(Math.random() * (maze.length-3)/2)*2 + 1;
+
+      while(x>2){
+        if(maze[y][x] === 1){
+          wall_spots.push([y,x]);
+        }
+        if(maze[x][y] === 1){
+          wall_spots.push([x,y]);
+        }
+        x--;
+      }
+      shuffleArray(wall_spots);
+
+      for(let i = 0; i < Math.floor(wall_spots.length/20); i++){
+        maze[wall_spots[i][0]][wall_spots[i][1]] = 0;
+      }
+
+    }
+
+    console.log("wall_spots:",wall_spots);
+
+
+    
+
+    
 
 
     // console.log(maze);
