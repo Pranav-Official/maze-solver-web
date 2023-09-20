@@ -1,8 +1,11 @@
 import  shuffleArray  from "../Fuctions/shuffleArray";
 const availableMoves = (maze: number[][], i: number, j: number): number[][] => {
 
-    let moves = [[0,0]];
-    moves.pop();
+
+    console.log("maze", maze);
+
+    let moves = [];
+    
 
     try {
         if (maze[i + 1][j] === 0) {
@@ -27,8 +30,12 @@ const availableMoves = (maze: number[][], i: number, j: number): number[][] => {
     
       shuffleArray(moves);
 
+      console.log("moves", moves);
+
     return moves;
 
 
     
 }
+
+export default availableMoves;

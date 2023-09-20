@@ -22,7 +22,7 @@ function array2matrix (arr: any[], rowLength: number): any[][] {
       result.push(currentRow);
     }
     
-    console.log("2dify done",result, "rowLength", rowLength);
+    // console.log("2dify done",result, "rowLength", rowLength);
     return result;
   }
 

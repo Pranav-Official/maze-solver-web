@@ -129,7 +129,7 @@ const generateRandomNumber = (min: number, max: number) => {
       let i = 1;
       do{
 
-        console.log("itreration : ", i++);
+        // console.log("itreration : ", i++);
       let elementBetweenCoordinates = findElementBetweenCoordinates(pixelCoordinates, previousCoordinates, maze);
       //console.log(elementBetweenCoordinates)
       maze[elementBetweenCoordinates[0]][elementBetweenCoordinates[1]] = 0;
@@ -154,13 +154,13 @@ const generateRandomNumber = (min: number, max: number) => {
       
       previousCoordinates = pixelCoordinates;
       
-      console.log("stack ",stack)
+      // console.log("stack ",stack)
       shuffleArray(stack);
 
       if(neighbours.length === 0) {
-        console.log("backtracking")
+        // console.log("backtracking")
         let temp = stack.pop();
-        console.log("temp",temp)
+        // console.log("temp",temp)
         let coordinates = temp[0];
         pixelCoordinates[0] = temp[0][0];
         pixelCoordinates[1] = temp[0][1];

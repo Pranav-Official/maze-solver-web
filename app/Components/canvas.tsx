@@ -10,7 +10,7 @@ const Canvas = (props:any) => {
   // console.log("recived in canvas", maze1d)
    
   const maze = array2matrix(props.maze1d, props.maze_size);
-  console.log("recived in canvas", maze, "maze_size", props.maze_size)
+  // console.log("recived in canvas", maze, "maze_size", props.maze_size)
  
 
   useEffect(() => {
@@ -36,21 +36,34 @@ const Canvas = (props:any) => {
       if (!ctx) return;
       const width = canvas.width;
       const height = canvas.height;
-      ctx.strokeStyle = '#020C13';
-      ctx.fillStyle = '#020C13';
+      
       if (maze.length === 0) return;
       const sq_width = width / props.maze_size;
+      
+      
       
       for(let i = 0; i < maze.length; i++) {
         for(let j = 0; j < maze[i].length; j++) {
           if(maze[i][j] === 1) {
+            ctx.fillStyle = `rgb(2, 12, 19, 1)` ;
             ctx.fillRect(j * sq_width, i * sq_width, sq_width, sq_width);
           }
+          if(maze[i][j] === 2) {
+            // ctx.strokeStyle = '#020C13';
+            ctx.fillStyle = `rgb(61, 182, 47, 1)` ;
+            ctx.fillRect(j * sq_width, i * sq_width, sq_width, sq_width);
+          }
+          if(maze[i][j] === 3) {
+            // ctx.strokeStyle = '#020C13';
+            ctx.fillStyle = `rgb(61, 182, 47, 1)` ;
+            ctx.fillRect(j * sq_width, i * sq_width, sq_width, sq_width);
+          }
+
         }
       }
-      console.log("drawing compleye")
+      // console.log("drawing compleye")
 
-      console.log(width, height);
+      // console.log(width, height);
    
     }
 

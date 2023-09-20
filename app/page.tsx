@@ -13,6 +13,9 @@ import { useState, useEffect } from 'react'
 import matrix2array from "./Fuctions/matrix2array";
 import { log } from "console";
 import dfsVisualization from "./Solving Algorithms/dfs";
+import array2matrix from "./Fuctions/array2matrix";
+
+import availableMoves from "./Fuctions/availableMoves";
 
 export default function Home() {
 
@@ -34,11 +37,11 @@ export default function Home() {
     [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1],
     [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
-    [1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1],
+    [1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1],
     [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+    [1, 1, 1, 1, 1, 0, 1, 2, 1, 1, 1, 1, 1, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-    [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 1, , 1, 0, 1, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1],
@@ -46,6 +49,7 @@ export default function Home() {
     [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1]
   ];
+  
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -128,8 +132,76 @@ export default function Home() {
   const VisualizeMaze = () => {
     console.log("VusualizeMaze wth option: ", algorithm);
     dfsVisualization(maze1d, algorithm);
+    dfsSolver();
   }
   
+
+  //dfs algorithm to solve the maze
+
+  const dfsSolver = () => {
+    let visited = [[0,0]];
+    let path = [[0,0]];
+    let stack = [[0,0]];
+    
+    visited.pop();
+    stack.pop();
+    path.pop();
+
+    let mazetemp = array2matrix(maze1d, maze_size);
+
+    let entrypoint = [0,0]; 
+    let exitpoint = [0,0];
+
+    const trimDuplicates = (arr:number[][], arr2:number[][])  => {
+
+      let temp = [];
+      for(let i = 0; i < arr.length; i++) {
+        if(!arr2.includes(arr[i])) {
+          temp.push(arr[i]);
+        }
+      }
+      return temp;
+    }
+
+    const tracePath = (arr:number[][], value:number) => {
+      for (let i = 0; i < arr.length; i++) {
+        mazetemp[arr[i][0]][arr[i][1]] = value;
+        maze1d[mazetemp.length*arr[i][0]+arr[i][1]] = value;
+      }
+    }
+
+
+
+    for(let i = 0; i < mazetemp[0].length; i++) {
+      if(mazetemp[0][i] === 0) {
+        entrypoint = [0,i];
+      }
+      if(mazetemp[mazetemp.length-1][i] === 0) {
+        exitpoint = [mazetemp.length-1,i];
+      }
+    }
+
+    console.log("entrypoint",entrypoint);
+    console.log("exitpoint",exitpoint);
+    let test = maze1d;
+    test[2] = 2;
+
+    setMaze(test);  
+    console.log("maze1d",maze1d);
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
 
 
   return (
