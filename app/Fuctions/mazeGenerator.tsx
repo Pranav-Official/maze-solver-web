@@ -161,14 +161,17 @@ const generateRandomNumber = (min: number, max: number) => {
       if(neighbours.length === 0) {
         // console.log("backtracking")
         let temp = stack.pop();
-        // console.log("temp",temp)
-        let coordinates = temp[0];
-        pixelCoordinates[0] = temp[0][0];
-        pixelCoordinates[1] = temp[0][1];
-        //console.log("pixel coordinates",pixelCoordinates)
-        //console.log("coordinates",coordinates)
-        previousCoordinates[0] = temp[1][0];
-        previousCoordinates[1] = temp[1][1];
+        if(temp !== undefined){
+          // console.log("temp",temp)
+          let coordinates = temp[0];
+          pixelCoordinates[0] = temp[0][0];
+          pixelCoordinates[1] = temp[0][1];
+          //console.log("pixel coordinates",pixelCoordinates)
+          //console.log("coordinates",coordinates)
+          previousCoordinates[0] = temp[1][0];
+          previousCoordinates[1] = temp[1][1];
+
+        }
         //console.log("nearest visited", previousCoordinates)
       }
       else{
