@@ -156,7 +156,7 @@ export default function Home() {
     <div className=" flex min-h-screen flex-col mx-8 min-[1000px]:mx-20 2xl:mx-48 justify-between text-text dark:text-dark-text font-Sulphur_point ">
       <div className='flex flex-row h-28 justify-between'> {/* the top navbar*/}
         <div className='flex flex-row'>
-        <Image className='collapse md:visible py-6 pr-3 ' src={logoTheme} alt="maze" width={80} height={80} />
+        <Image className='hidden md:block py-6 pr-3 ' src={logoTheme} alt="maze" width={80} height={80} />
         <h1 className='text-3xl m-0 md:text-7xl py-11 md:py-6 px-0 md:px-3'>MazeVisualizer</h1>
         </div>
         
@@ -165,8 +165,8 @@ export default function Home() {
               <Image className ="p-4" src={themeIcon} alt="maze" width={100} height={100} />
           </button>
           <button className='flex flex-row align-middle justify-center bg-primary hover:bg-hover-primary rounded-lg mt-3 py-1 md:my-auto drop-shadow-xl 'onClick={() => window.location.href = 'https://github.com/Pranav-Official/maze-solver-web'}>
-            <p className=' collapse md:visible mt-4 ml-3 mr-2 text-xl font-bold dark:text-text' >GitHub</p>
-            <Image className ="m-2 md:py-1 md:my-3 md:mr-3" src="/github.png" alt="maze" width={30} height={30} />
+            <p className=' hidden md:block mt-4 ml-3 mr-2 text-xl font-bold dark:text-text' >GitHub</p>
+            <Image className ="m-2 mx-5 md:py-1 md:my-3 md:mr-3" src="/github.png" alt="maze" width={30} height={30} />
           </button>
         </div>
       </div>
